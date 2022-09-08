@@ -1,4 +1,5 @@
 import './style.css';
-import { processWeatherData, getWeather } from './modules/weather';
+import { generateLayout, searchListener } from './modules/display';
 
-processWeatherData(getWeather('london'));
+generateLayout();
+searchListener();
