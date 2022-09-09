@@ -27,7 +27,7 @@ module.exports = {
   },
   devServer: {
     static: 'dist',
-    liveReload: false,
-    hot: false,
+    liveReload: true,
+    hot: true,
   },
 };

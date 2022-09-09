@@ -1,6 +1,6 @@
 import { getWeather } from './weather';
 
-export function createSearchForm() {
+function createSearchForm() {
   const form = document.createElement('form');
   const input = document.createElement('input');
   form.id = 'search-form';
@@ -23,4 +23,10 @@ export function searchListener() {
 export function generateLayout() {
   const content = document.getElementById('content');
   content.append(createSearchForm());
+}
+
+export function showWeatherToday(weatherObject) {
+  const content = document.getElementById('content');
+  let weatherCard = document.createElement('div');
+  weatherCard.classList.add('grid p-1 ')
 }

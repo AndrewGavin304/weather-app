@@ -1,3 +1,5 @@
+import { showWeatherToday } from "./display";
+
 function convertCelsiusToFahrenheit(tempCelsius) {
   const tempFahrenheit = ((tempCelsius * (9 / 5)) + 32).toFixed(2);
   return tempFahrenheit;
@@ -20,6 +22,6 @@ export async function getWeather(location) {
   const response = await fetch(
     `https://api.openweathermap.org/data/2.5/weather?q=${location}&APPID=8e295eaa7e218e2a1c3e71497e4b9f7b&units=metric`);
   const data = await response.json();
-  const processedData = processWeatherData(data);
-  console.log(processedData);
+  const weatherObject = processWeatherData(data);
+  console.log(weatherObject);
 }
