@@ -1,7 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  purge: ['./dist/*.html'],
-  content: [],
+  content: ['./src/modules/*.js', './dist/*.{html,js}', './src/index.js'],
   theme: {
     colors: {
       coffee: {
@@ -15,7 +14,7 @@ module.exports = {
         dark: '#334C5B',
       },
       teal: {
-        light: '#74AA91',
+        light: '#8DB9A5',
         DEFAULT: '#72a98fff',
         dark: '#4E7E68',
       },
@@ -33,4 +32,4 @@ module.exports = {
     extend: {},
   },
   plugins: [],
-};
+}
