@@ -28,8 +28,16 @@ module.exports = {
         DEFAULT: '#cbef43ff',
         dark: '#BFEB1E',
       },
+      white: {
+        DEFAULT: '#FAF9F6',
+      },
     },
-    extend: {},
+    extend: {
+      backgroundImage: {
+        'sunny': "url('images/backgrounds/sunny-day.jpg')",
+        'footer-texture': "url('/img/footer-texture.png')",
+      },
+    },
   },
   plugins: [],
 }

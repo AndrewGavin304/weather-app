@@ -18,12 +18,8 @@ const lime = 'bg-lime';
 const limeLight = 'bg-lime-light';
 const limeDark = 'bg-lime-dark';
 
-const paletteDiv = document.createElement('div');
-paletteDiv.classList = 'flex';
-const content = document.getElementById('content');
-content.append(paletteDiv);
-
 export function showColorPalette(color) {
+  const paletteDiv = document.getElementById('palette');
   const colorDivLight = document.createElement('div');
   const colorDivDefault = document.createElement('div');
   const colorDivDark = document.createElement('div');
@@ -59,11 +55,17 @@ export function searchListener() {
 
 export function generateLayout() {
   const content = document.getElementById('content');
+  content.classList.add('bg-sunny', 'bg-cover', 'bg-center', 'h-screen', 'w-screen', 'grid');
   content.append(createSearchForm());
+
+  const paletteDiv = document.createElement('footer');
+  paletteDiv.classList.add('flex', 'fixed', 'bottom-0');
+  paletteDiv.id = 'palette';
+  content.append(paletteDiv);
 }
 
-export function showWeatherToday(weatherObject) {
-  const content = document.getElementById('content');
-  let weatherCard = document.createElement('div');
-  weatherCard.classList.add('grid p-1 border')
-}
+// export function showWeatherToday(weatherObject) {
+//   const content = document.getElementById('content');
+//   let weatherCard = document.createElement('div');
+//   weatherCard.classList.add('grid p-1 border')
+// }
