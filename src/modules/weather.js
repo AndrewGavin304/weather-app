@@ -82,25 +82,54 @@ function createWeatherCard(weatherObject) {
   }
 
   const weatherCard = document.createElement('div');
-  weatherCard.classList.add('grid', 'grid-cols-2', 'grid-row-2', 'gap-x-2', 'gap-y-0', 'w-fit', 'h-fit', 'rounded', 'shadow-md', 'border-2', 'border-teal-light', 'text-blue-dark', 'm-4', 'bg-white');
+  weatherCard.classList.add(
+    'grid',
+    'grid-cols-2',
+    'row-start-3',
+    'gap-x-2',
+    'gap-y-0',
+    'w-fit',
+    'h-fit',
+    'rounded',
+    'shadow-md',
+    'border-2',
+    'border-teal-light',
+    'text-blue-dark',
+    'm-4',
+    'bg-white',
+    'justify-self-center',
+    'items-center',
+    'p-2',
+  );
   weatherCard.id = 'current-weather';
 
-  const currentTemp = document.createElement('div');
-  currentTemp.classList.add('font-bold', 'text-l', 'm-1', 'col-start-2');
-  currentTemp.innerText = `Temperature: ${weatherObject.temp}°F`;
+  const weatherCardHeader = document.createElement('span');
+  weatherCardHeader.innerText = 'Current Weather';
+  weatherCardHeader.classList.add('text-l', 'm-1', 'justify-self-center');
 
-  const currentWind = document.createElement('div');
+  const weatherImg = document.createElement('img');
+  weatherImg.classList.add(
+    'justify-self-center',
+    'w-36',
+    'h-36',
+    'col-start-1',
+    'row-span-3',
+  );
+  weatherImg.src = currentImageHandler(weatherObject);
+
+  const currentTemp = document.createElement('span');
+  currentTemp.classList.add('font-bold', 'text-5xl', 'm-1', 'col-start-2');
+  currentTemp.innerText = `${weatherObject.temp}°F`;
+
+  const currentWind = document.createElement('span');
   currentWind.classList.add('text-l', 'm-1', 'col-start-2');
   currentWind.innerText = `Wind: ${weatherObject.wind}`;
 
-  const weatherImg = document.createElement('img');
-  weatherImg.classList.add('justify-self-center', 'w-48', 'h-48', 'col-start-1', 'row-span-3');
-  weatherImg.src = currentImageHandler(weatherObject);
-
-  const description = document.createElement('div');
+  const description = document.createElement('span');
   description.classList.add('text-l', 'm-1', 'col-start-2');
   description.innerText = weatherObject.description;
 
+  weatherCard.append(weatherCardHeader);
   weatherCard.append(weatherImg);
   weatherCard.append(currentTemp);
   weatherCard.append(currentWind);
@@ -112,16 +141,24 @@ function createWeatherCard(weatherObject) {
 export async function getWeather(town, state, country) {
   const latLongResponse = await getLatLong(town, state, country);
   const latLongData = await latLongResponse.json();
+  console.log(latLongData);
   const lat = `${latLongData[0].lat}`;
   const lon = `${latLongData[0].lon}`;
 
+  const cityName = `${latLongData[0].name}`;
+  const stateName = `${latLongData[0].state}`;
+
   const response = await fetch(`https://api.weather.gov/points/${lat},${lon}`);
   const data = await response.json();
-  console.log(data);
+
   const forecastAPIURL = data.properties.forecast;
   const forecastResponse = await fetch(forecastAPIURL);
   const forecastData = await forecastResponse.json();
-  console.log(forecastData);
+
   const currentWeather = processWeatherData(forecastData);
   createWeatherCard(currentWeather);
+}
+
+function locationDisplay(cityName, stateName){
+  
 }

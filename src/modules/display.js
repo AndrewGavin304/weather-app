@@ -40,6 +40,8 @@ function createSearchForm() {
   input.id = 'location-search';
   input.type = 'search';
   input.value = 'location';
+
+  input.classList.add('rounded', 'p-1', 'bg-white', 'appearance-none', 'shadow', 'focus:outline-none', 'focus:bg-green-light', 'border', 'border-teal-dark', 'transition', 'duration-200')
   form.append(input);
   return form;
 }
@@ -53,10 +55,26 @@ export function searchListener() {
   });
 }
 
+function createNavbar() {
+  const navbar = document.createElement('div');
+  navbar.classList.add('flex', 'justify-evenly', 'items-center', 'p-4', 'bg-none', 'h-16');
+
+  const siteTitleContainer = document.createElement('div');
+  const siteName = document.createElement('span');
+  siteName.innerText = 'WeatherApp';
+  siteName.classList.add('text-white', 'text-3xl', 'font-bold');
+  siteTitleContainer.append(siteName);
+
+  navbar.append(siteTitleContainer);
+  navbar.append(createSearchForm());
+  return navbar;
+}
+
 export function generateLayout() {
   const content = document.getElementById('content');
-  content.classList.add('bg-sunny', 'bg-cover', 'bg-center', 'h-screen', 'w-screen', 'grid');
-  content.append(createSearchForm());
+  content.classList.add('bg-sunny', 'bg-cover', 'bg-center', 'h-screen', 'w-screen', 'grid', 'auto-rows-min');
+
+  content.append(createNavbar());
 
   const paletteDiv = document.createElement('footer');
   paletteDiv.classList.add('flex', 'fixed', 'bottom-0');
